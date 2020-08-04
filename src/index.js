@@ -6,7 +6,6 @@ import * as serviceWorker from './serviceWorker';
 import {createStore} from "redux";
 import todoReducers from "./reducers";
 import {Provider} from "react-redux";
-
 const store = createStore(todoReducers);
 
 ReactDOM.render(

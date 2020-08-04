@@ -7,6 +7,7 @@ import {deleteTodo, reverseMark} from "../../actions";
 class FinishedTodo extends React.Component {
 
     render() {
+
         return (
             <div>
                 <h1>All Finished Todo</h1>
@@ -14,7 +15,7 @@ class FinishedTodo extends React.Component {
                     this.props.todoList.filter((item) =>item.mark===true)
                         .map((item, index) =>
                         <Todo text={item.text}
-                              id={index}
+                              id={item.id}
                               key={index}
                               mark={item.mark}
                               finished={true}
