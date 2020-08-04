@@ -7,7 +7,11 @@ class Todo extends React.Component {
         if(this.props.finished){
             return;
         }
-        console.log(this.props.id)
+        axios.put("https://5f29559ba1b6bf0016ead479.mockapi.io/tudos/"+this.props.id,{
+            id:this.props.id,
+            mark:!this.props.mark,
+            test:this.props.text
+        })
         this.props.onReverse(this.props.id);
     }
 
