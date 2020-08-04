@@ -2,9 +2,9 @@ import React from "react";
 import Todo from "../todo";
 import AddTodo from "../addTodo";
 import {connect} from "react-redux";
-import { addTodoRemote, deleteTodo, resetTodos, reverseMark} from "../../actions";
+import {addTodoRemote, deleteTodo, resetTodos, reverseMark} from "../../actions";
 import axios from 'axios';
-
+import {Link} from "react-router-dom"
 class TodoList extends React.Component {
 
     componentDidMount() {
@@ -23,7 +23,9 @@ class TodoList extends React.Component {
 
 
         return (
-            <div>
+            <div >
+                    <Link to="/" >home page</Link>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                    <Link to="/finished" >finish page</Link>
                 <AddTodo/>
                 {
                     this.props.todoList.map((item, index) =>
