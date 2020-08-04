@@ -7,7 +7,7 @@ class Todo extends React.Component {
         return (
             <div>
                 <label>{this.props.text}</label>
-                <button onClick={this.props.onDelete(this.props.id)}>X</button>
+                <button onClick={() => this.props.onDelete(this.props.id)}>X</button>
             </div>
         )
     }

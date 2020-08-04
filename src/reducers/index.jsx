@@ -10,6 +10,8 @@ const todoReducers = (state = todoArray, action) => {
                     text: action.text,
                 }
             ];
+        case "DELETE_TODO":
+            return state.filter((item, index) => action.id !== index);
         default:
             return state
     }

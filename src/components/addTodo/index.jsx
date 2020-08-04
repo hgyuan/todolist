@@ -3,9 +3,6 @@ import {addTodo} from "../../actions";
 import {connect} from "react-redux";
 
 class AddTodo extends React.Component{
-    constructor(props) {
-        super(props);
-    }
 
     handleAddTodo=()=>{
         const inputString = document.getElementById("inputString").value;
