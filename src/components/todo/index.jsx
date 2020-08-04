@@ -4,6 +4,9 @@ import * as React from "react";
 class Todo extends React.Component {
 
     handleCompeteTodo=()=>{
+        if(this.props.finished){
+            return;
+        }
         this.props.onReverse(this.props.id);
     }
 
@@ -15,6 +18,7 @@ class Todo extends React.Component {
                             textDecoration: this.props.mark ? 'line-through' : 'none'
                         }}>
                     {this.props.text}</label>
+
                 <button onClick={() => this.props.onDelete(this.props.id)}>X</button>
             </div>
         )
