@@ -2,7 +2,7 @@ import React from "react";
 import Todo from "../todo";
 import AddTodo from "../addTodo";
 import {connect} from "react-redux";
-import {deleteTodo} from "../../actions";
+import {deleteTodo, reverseMark} from "../../actions";
 
 class TodoList extends React.Component {
     render() {
@@ -10,8 +10,13 @@ class TodoList extends React.Component {
             <div>
                 <AddTodo/>
                 {
-                    this.props.todoList.map((item, index) => <Todo text={item.text} id={index} key={index}
-                                                                   onDelete={this.props.onDeleteToProps}/>)
+                    this.props.todoList.map((item, index) =>
+                        <Todo text={item.text}
+                              id={index}
+                              key={index}
+                              mark={item.mark}
+                              onDelete={this.props.onDeleteToProps}
+                              onReverse={this.props.onReverseToProps}/>)
                 }
             </div>
         )
@@ -23,7 +28,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    onDeleteToProps: (id) => dispatch(deleteTodo(id))
+    onDeleteToProps: (id) => dispatch(deleteTodo(id)),
+    onReverseToProps:(id)=>dispatch(reverseMark(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList);

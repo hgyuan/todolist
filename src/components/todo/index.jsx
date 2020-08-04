@@ -3,10 +3,18 @@ import * as React from "react";
 
 class Todo extends React.Component {
 
+    handleCompeteTodo=()=>{
+        this.props.onReverse(this.props.id);
+    }
+
     render() {
         return (
             <div>
-                <label>{this.props.text}</label>
+                <label onClick={this.handleCompeteTodo}
+                       style={{
+                            textDecoration: this.props.mark ? 'line-through' : 'none'
+                        }}>
+                    {this.props.text}</label>
                 <button onClick={() => this.props.onDelete(this.props.id)}>X</button>
             </div>
         )

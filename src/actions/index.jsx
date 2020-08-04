@@ -13,3 +13,10 @@ export const deleteTodo = id => {
         id
     }
 }
+
+export const reverseMark = id => {
+    return {
+        type: "REVERSE_MARK",
+        id
+    }
+}
