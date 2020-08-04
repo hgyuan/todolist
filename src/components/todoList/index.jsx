@@ -2,7 +2,7 @@ import React from "react";
 import Todo from "../todo";
 import AddTodo from "../addTodo";
 import {connect} from "react-redux";
-import {addTodo, addTodoRemote, deleteTodo, resetTodos, reverseMark} from "../../actions";
+import { addTodoRemote, deleteTodo, resetTodos, reverseMark} from "../../actions";
 import axios from 'axios';
 
 class TodoList extends React.Component {

@@ -2,15 +2,6 @@ const todoArray = []
 
 const todoReducers = (state = todoArray, action) => {
     switch (action.type) {
-        case "ADD_TODO":
-            return [
-                ...state,
-                {
-                    id: action.id,
-                    text: action.text,
-                    mark: false,
-                }
-            ];
         case "DELETE_TODO":
             return state.filter((item) => action.id !== item.id);
         case "REVERSE_MARK":
