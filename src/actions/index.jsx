@@ -1,5 +1,5 @@
 let todoId = 0;
-const addTodo = text =>{
+export const addTodo = text =>{
     return{
         type: "ADD_TODO",
         id: todoId++,
@@ -7,7 +7,7 @@ const addTodo = text =>{
     }
 }
 
-const deleteTodo = id =>{
+export const deleteTodo = id =>{
     return{
         type:"DELETE_TODO",
         id

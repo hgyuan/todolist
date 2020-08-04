@@ -1,17 +1,13 @@
 import * as React from "react";
 
 
-class Todo extends React.Component{
-    constructor(props) {
-        super(props);
-    }
+class Todo extends React.Component {
 
-
-    render(){
+    render() {
         return (
             <div>
-                <label>abc</label>
-                <button>X</button>
+                <label>{this.props.text}</label>
+                <button onClick={this.props.onDelete(this.props.id)}>X</button>
             </div>
         )
     }

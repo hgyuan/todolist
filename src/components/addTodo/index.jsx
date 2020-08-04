@@ -1,19 +1,35 @@
 import * as React from "react";
+import {addTodo} from "../../actions";
+import {connect} from "react-redux";
 
 class AddTodo extends React.Component{
     constructor(props) {
         super(props);
     }
 
+    handleAddTodo=()=>{
+        const inputString = document.getElementById("inputString").value;
+        this.props.addTodoToProps(inputString);
+        console.log(this.props.todoList)
+    }
 
     render(){
         return (
             <div>
-                <input/>
-                <button>add</button>
+                <input id="inputString"/>
+                <button onClick={this.handleAddTodo}>add</button>
             </div>
         )
     }
 }
 
-export default AddTodo;
+const mapStateToProps = state => {
+    return { todoList: state }
+}
+
+const mapDispatchToProps = dispatch => ({
+    addTodoToProps: (text) => dispatch(addTodo(text))
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddTodo);

@@ -9,11 +9,10 @@ const todoReducers = (state = todoArray, action) => {
                     id: action.id,
                     text: action.text,
                 }
-            ]
+            ];
         default:
             return state
-
-
     }
-
 }
+
+export default todoReducers;
