@@ -4,28 +4,26 @@ import AddTodo from "../addTodo";
 import {connect} from "react-redux";
 import {addTodoRemote, deleteTodo, resetTodos, reverseMark} from "../../actions";
 import axios from 'axios';
-import {Link} from "react-router-dom"
+import NavLink from "../NavLink";
+
 class TodoList extends React.Component {
 
     componentDidMount() {
         this.props.onResetToProps();
         axios.get('https://5f29559ba1b6bf0016ead479.mockapi.io/tudos')
             .then(response => {
-                //????
                 response.data.map((item) => {
-                    this.props.onAddRemoteToProps(item.id,item.text, item.mark);
+                    this.props.onAddRemoteToProps(item.id, item.text, item.mark);
                 })
             })
-
     }
 
     render() {
 
 
         return (
-            <div >
-                    <Link to="/" >home page</Link>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-                    <Link to="/finished" >finish page</Link>
+            <div>
+                <NavLink/>
                 <AddTodo/>
                 {
                     this.props.todoList.map((item, index) =>
@@ -47,10 +45,11 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    onAddRemoteToProps: (id,content, stat) => dispatch(addTodoRemote(id,content, stat)),
+    onAddRemoteToProps: (id, content, stat) => dispatch(addTodoRemote(id, content, stat)),
     onDeleteToProps: (id) => dispatch(deleteTodo(id)),
+    // todo
     onReverseToProps: (id) => dispatch(reverseMark(id)),
-    onResetToProps:()=>dispatch(resetTodos()),
+    onResetToProps: () => dispatch(resetTodos()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList);

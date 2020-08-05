@@ -2,7 +2,7 @@ import * as React from "react";
 import Todo from "../todo";
 import {connect} from "react-redux";
 import {deleteTodo, reverseMark} from "../../actions";
-import {Link} from "react-router-dom";
+import NavLink from "../NavLink";
 
 
 class FinishedTodo extends React.Component {
@@ -11,8 +11,7 @@ class FinishedTodo extends React.Component {
 
         return (
             <div>
-                <Link to="/" >home page</Link>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-                <Link to="/finished" >finish page</Link>
+                <NavLink/>
                 <h1>All Finished Todo</h1>
                 {
                     this.props.todoList.filter((item) =>item.mark===true)
@@ -24,6 +23,7 @@ class FinishedTodo extends React.Component {
                               finished={true}
                               onDelete={this.props.onDeleteToProps}
                               />)
+
                 }
             </div>
         )
