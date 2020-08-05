@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {deleteTodo} from "../../actions";
 import NavLink from "../NavLink";
 import {List, Divider, Row, Col} from 'antd';
+import todoReducers from "../../reducers";
 
 class FinishedTodo extends React.Component {
 
@@ -39,7 +40,7 @@ class FinishedTodo extends React.Component {
 }
 
 const mapStateToProps = state => {
-    return {todoList: state}
+    return {todoList: state.todoReducers}
 }
 const mapDispatchToProps = dispatch => ({
     onDeleteToProps: (id) => dispatch(deleteTodo(id)),

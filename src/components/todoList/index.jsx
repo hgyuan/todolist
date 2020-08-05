@@ -6,12 +6,14 @@ import {addTodoRemote, deleteTodo, resetTodos, reverseMark} from "../../actions"
 import NavLink from "../NavLink";
 import {List, Divider, Row, Col} from 'antd';
 import {axiosApi} from "../AxiosApi";
+import todoReducers from "../../reducers";
 
 class TodoList extends React.Component {
 
     componentDidMount() {
         this.props.onResetToProps();
         axiosApi.get("").then(response => {
+            console.log(response)
             response.data.map((item) => {
                 this.props.onAddRemoteToProps(item.id, item.text, item.mark);
             })
@@ -23,7 +25,6 @@ class TodoList extends React.Component {
             <div>
                 <Row>
                     <Col span={10} offset={7}>
-
                         <NavLink/>
                         <Divider orientation="center">Todo</Divider>
                         <AddTodo/>
@@ -51,7 +52,7 @@ class TodoList extends React.Component {
 }
 
 const mapStateToProps = state => {
-    return {todoList: state}
+    return {todoList: state.todoReducers}
 }
 
 const mapDispatchToProps = dispatch => ({

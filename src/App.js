@@ -14,7 +14,6 @@ class App extends React.Component {
                     <ComponentRouter/>
                 </div>
             </Spin>
-
         );
     }
 }
