@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {createStore} from "redux";
+import {combineReducers, createStore} from "redux";
 import todoReducers from "./reducers";
 import {Provider} from "react-redux";
-const store = createStore(todoReducers);
+import loadingReducers from "./reducers/loading";
+const store = createStore(combineReducers({todoReducers,loadingReducers}));
+
+export default store
 
 ReactDOM.render(
     <React.StrictMode>

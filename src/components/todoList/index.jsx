@@ -3,7 +3,6 @@ import Todo from "../todo";
 import AddTodo from "../addTodo";
 import {connect} from "react-redux";
 import {addTodoRemote, deleteTodo, resetTodos, reverseMark} from "../../actions";
-import axios from 'axios';
 import NavLink from "../NavLink";
 import {List, Divider, Row, Col} from 'antd';
 import {axiosApi} from "../AxiosApi";
@@ -18,11 +17,13 @@ class TodoList extends React.Component {
             })
         })
     }
+
     render() {
         return (
             <div>
                 <Row>
                     <Col span={10} offset={7}>
+
                         <NavLink/>
                         <Divider orientation="center">Todo</Divider>
                         <AddTodo/>

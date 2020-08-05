@@ -2,14 +2,27 @@ import React from 'react';
 import './App.css';
 import ComponentRouter from "./components/Routers";
 import 'antd/dist/antd.css';
+import {Spin} from 'antd';
+import {connect} from "react-redux";
 
 
-function App() {
-    return (
-        <div className="App">
-            <ComponentRouter/>
-        </div>
-    );
+class App extends React.Component {
+    render() {
+        return (
+            <Spin spinning={this.props.loading}>
+                <div className="App">
+                    <ComponentRouter/>
+                </div>
+            </Spin>
+
+        );
+    }
 }
 
-export default App;
+const mapStateToProps = state => {
+    return {
+        loading: state.loadingReducers.loading
+    }
+}
+
+export default connect(mapStateToProps)(App);
