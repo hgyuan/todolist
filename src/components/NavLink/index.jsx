@@ -1,12 +1,19 @@
 import * as React from "react";
+import {Menu} from 'antd'
 import {Link} from "react-router-dom";
 
 class NavLink extends React.Component{
     render(){
         return (
             <div>
-                <Link to="/" >home page</Link>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-                <Link to="/finished" >finish page</Link>
+                <Menu mode="horizontal">
+                    <Menu.Item>
+                        <Link to="/" >home page</Link>
+                    </Menu.Item>
+                    <Menu.Item>
+                        <Link to="/finished" >finish page</Link>
+                    </Menu.Item>
+                </Menu>
             </div>
         )
     }

@@ -1,14 +1,13 @@
 import React from 'react';
 import './App.css';
 import ComponentRouter from "./components/Routers";
+import 'antd/dist/antd.css';
 
 
 function App() {
     return (
         <div className="App">
-            <header className="App-header">
-                <ComponentRouter/>
-            </header>
+            <ComponentRouter/>
         </div>
     );
 }

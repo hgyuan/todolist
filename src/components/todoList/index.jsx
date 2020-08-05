@@ -5,7 +5,8 @@ import {connect} from "react-redux";
 import {addTodoRemote, deleteTodo, resetTodos, reverseMark} from "../../actions";
 import axios from 'axios';
 import NavLink from "../NavLink";
-import {axiosApi} from "../AxiosApi";
+import {List, Divider} from 'antd';
+
 
 class TodoList extends React.Component {
 
@@ -23,16 +24,29 @@ class TodoList extends React.Component {
         return (
             <div>
                 <NavLink/>
+                <Divider orientation="center">Todo</Divider>
                 <AddTodo/>
                 {
-                    this.props.todoList.map((item, index) =>
-                        <Todo text={item.text}
-                              id={item.id}
-                              key={index}
-                              mark={item.mark}
-
-                              onDelete={this.props.onDeleteToProps}
-                              onReverse={this.props.onReverseToProps}/>)
+                    <List
+                        size="large"
+                        bordered
+                        dataSource={this.props.todoList}
+                        renderItem={(item, index) => <List.Item><Todo text={item.text}
+                                                                      id={item.id}
+                                                                      key={index}
+                                                                      mark={item.mark}
+                                                                      onDelete={this.props.onDeleteToProps}
+                                                                      onReverse={this.props.onReverseToProps}/></List.Item>}
+                    />
+                    // this.props.todoList.map((item, index) =>
+                    //     <Todo text={item.text}
+                    //           id={item.id}
+                    //           key={index}
+                    //           mark={item.mark}
+                    //
+                    //           onDelete={this.props.onDeleteToProps}
+                    //           onReverse={this.props.onReverseToProps}/>
+                    //           )
                 }
             </div>
         )

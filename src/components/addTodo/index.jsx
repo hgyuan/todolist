@@ -2,39 +2,61 @@ import * as React from "react";
 import {addTodoRemote} from "../../actions";
 import {connect} from "react-redux";
 import axios from "axios"
-class AddTodo extends React.Component{
+import {Input, message} from 'antd';
 
-    handleAddTodo=()=>{
-        // todo not id
-        let mydate = new Date();
-        let uuid =""+mydate.getDay()+ mydate.getHours()+ mydate.getMinutes()+mydate.getSeconds()+mydate.getMilliseconds()+parseInt(Math.random()*1000000);
-        //todo ""
-        const inputString = document.getElementById("inputString").value;
-        this.props.addTodoRemoteToProps(uuid,inputString,false);
-        axios.post("https://5f29559ba1b6bf0016ead479.mockapi.io/tudos", {
-            text:inputString,
-            mark:false,
-        })
-        //todo return object
-
+class AddTodo extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: ''
+        }
     }
 
-    render(){
+    handleChangeValue = (event) => {
+        this.setState({
+            value: event.target.value,
+        })
+    }
+
+
+    handleAddTodo = () => {
+        if (this.state.value.length === 0) {
+            message.error('Can not input empty content');
+            return;
+        }
+        // todo not id
+        let mydate = new Date();
+        let uuid = "" + mydate.getDay() + mydate.getHours() + mydate.getMinutes() + mydate.getSeconds() + mydate.getMilliseconds() + parseInt(Math.random() * 1000000);
+        this.props.addTodoRemoteToProps(uuid, this.state.value, false);
+        axios.post("https://5f29559ba1b6bf0016ead479.mockapi.io/tudos", {
+            text: this.state.value,
+            mark: false,
+        })
+        //todo return object
+    }
+
+    render() {
+        const {Search} = Input;
         return (
             <div>
-                <input id="inputString"/>
-                <button onClick={this.handleAddTodo}>add</button>
+                <Search
+                    placeholder="input search text"
+                    enterButton="Add"
+                    size="large"
+                    onChange={this.handleChangeValue}
+                    onSearch={this.handleAddTodo}
+                />
             </div>
         )
     }
 }
 
 const mapStateToProps = state => {
-    return { todoList: state }
+    return {todoList: state}
 }
 
 const mapDispatchToProps = dispatch => ({
-    addTodoRemoteToProps: (id,text,mark) => dispatch(addTodoRemote(id,text,mark))
+    addTodoRemoteToProps: (id, text, mark) => dispatch(addTodoRemote(id, text, mark))
 })
 
 
