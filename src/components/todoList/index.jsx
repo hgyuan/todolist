@@ -31,22 +31,16 @@ class TodoList extends React.Component {
                         size="large"
                         bordered
                         dataSource={this.props.todoList}
-                        renderItem={(item, index) => <List.Item><Todo text={item.text}
-                                                                      id={item.id}
-                                                                      key={index}
-                                                                      mark={item.mark}
-                                                                      onDelete={this.props.onDeleteToProps}
-                                                                      onReverse={this.props.onReverseToProps}/></List.Item>}
+                        renderItem={(item, index) =>
+                            <List.Item>
+                                <Todo text={item.text}
+                                      id={item.id}
+                                      key={index}
+                                      mark={item.mark}
+                                      onDelete={this.props.onDeleteToProps}
+                                      onReverse={this.props.onReverseToProps}/>
+                            </List.Item>}
                     />
-                    // this.props.todoList.map((item, index) =>
-                    //     <Todo text={item.text}
-                    //           id={item.id}
-                    //           key={index}
-                    //           mark={item.mark}
-                    //
-                    //           onDelete={this.props.onDeleteToProps}
-                    //           onReverse={this.props.onReverseToProps}/>
-                    //           )
                 }
             </div>
         )
