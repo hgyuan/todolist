@@ -5,43 +5,45 @@ import {connect} from "react-redux";
 import {addTodoRemote, deleteTodo, resetTodos, reverseMark} from "../../actions";
 import axios from 'axios';
 import NavLink from "../NavLink";
-import {List, Divider} from 'antd';
-
+import {List, Divider, Row, Col} from 'antd';
+import {axiosApi} from "../AxiosApi";
 
 class TodoList extends React.Component {
 
     componentDidMount() {
         this.props.onResetToProps();
-        axios.get('https://5f29559ba1b6bf0016ead479.mockapi.io/tudos')
-            .then(response => {
-                response.data.map((item) => {
-                    this.props.onAddRemoteToProps(item.id, item.text, item.mark);
-                })
+        axiosApi.get("").then(response => {
+            response.data.map((item) => {
+                this.props.onAddRemoteToProps(item.id, item.text, item.mark);
             })
+        })
     }
-
     render() {
         return (
             <div>
-                <NavLink/>
-                <Divider orientation="center">Todo</Divider>
-                <AddTodo/>
-                {
-                    <List
-                        size="large"
-                        bordered
-                        dataSource={this.props.todoList}
-                        renderItem={(item, index) =>
-                            <List.Item>
-                                <Todo text={item.text}
-                                      id={item.id}
-                                      key={index}
-                                      mark={item.mark}
-                                      onDelete={this.props.onDeleteToProps}
-                                      onReverse={this.props.onReverseToProps}/>
-                            </List.Item>}
-                    />
-                }
+                <Row>
+                    <Col span={10} offset={7}>
+                        <NavLink/>
+                        <Divider orientation="center">Todo</Divider>
+                        <AddTodo/>
+                        {
+                            <List
+                                size="large"
+                                bordered
+                                dataSource={this.props.todoList}
+                                renderItem={(item, index) =>
+                                    <List.Item>
+                                        <Todo text={item.text}
+                                              id={item.id}
+                                              key={index}
+                                              mark={item.mark}
+                                              onDelete={this.props.onDeleteToProps}
+                                              onReverse={this.props.onReverseToProps}/>
+                                    </List.Item>}
+                            />
+                        }
+                    </Col>
+                </Row>
             </div>
         )
     }

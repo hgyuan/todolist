@@ -3,6 +3,7 @@ import {addTodoRemote} from "../../actions";
 import {connect} from "react-redux";
 import axios from "axios"
 import {Input, message} from 'antd';
+import {axiosApi} from "../AxiosApi";
 
 class AddTodo extends React.Component {
     constructor(props) {
@@ -18,7 +19,6 @@ class AddTodo extends React.Component {
         })
     }
 
-
     handleAddTodo = () => {
         if (this.state.value.length === 0) {
             message.error('Can not input empty content');
@@ -28,7 +28,7 @@ class AddTodo extends React.Component {
         let mydate = new Date();
         let uuid = "" + mydate.getDay() + mydate.getHours() + mydate.getMinutes() + mydate.getSeconds() + mydate.getMilliseconds() + parseInt(Math.random() * 1000000);
         this.props.addTodoRemoteToProps(uuid, this.state.value, false);
-        axios.post("https://5f29559ba1b6bf0016ead479.mockapi.io/tudos", {
+        axiosApi.post("", {
             text: this.state.value,
             mark: false,
         })

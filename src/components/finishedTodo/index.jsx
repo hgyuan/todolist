@@ -3,32 +3,36 @@ import Todo from "../todo";
 import {connect} from "react-redux";
 import {deleteTodo} from "../../actions";
 import NavLink from "../NavLink";
-import {List, Divider} from 'antd';
+import {List, Divider, Row, Col} from 'antd';
 
 class FinishedTodo extends React.Component {
 
     render() {
         return (
             <div>
-                <NavLink/>
-                <Divider orientation="center">All Finished Todo</Divider>
-                {
-                    <List
-                        size="large"
-                        bordered
-                        dataSource={this.props.todoList.filter((item) => item.mark === true)}
-                        renderItem={(item, index) =>
-                            <List.Item>
-                                <Todo text={item.text}
-                                      id={item.id}
-                                      key={index}
-                                      mark={item.mark}
-                                      finished={true}
-                                      onDelete={this.props.onDeleteToProps}
-                                />
-                            </List.Item>}
-                    />
-                }
+                <Row>
+                    <Col span={10} offset={7}>
+                        <NavLink/>
+                        <Divider orientation="center">All Finished Todo</Divider>
+                        {
+                            <List
+                                size="large"
+                                bordered
+                                dataSource={this.props.todoList.filter((item) => item.mark === true)}
+                                renderItem={(item, index) =>
+                                    <List.Item>
+                                        <Todo text={item.text}
+                                              id={item.id}
+                                              key={index}
+                                              mark={item.mark}
+                                              finished={true}
+                                              onDelete={this.props.onDeleteToProps}
+                                        />
+                                    </List.Item>}
+                            />
+                        }
+                    </Col>
+                </Row>
             </div>
         )
     }
