@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import {addTodoRemote, deleteTodo, resetTodos, reverseMark} from "../../actions";
 import axios from 'axios';
 import NavLink from "../NavLink";
+import {axiosApi} from "../AxiosApi";
 
 class TodoList extends React.Component {
 
@@ -19,8 +20,6 @@ class TodoList extends React.Component {
     }
 
     render() {
-
-
         return (
             <div>
                 <NavLink/>

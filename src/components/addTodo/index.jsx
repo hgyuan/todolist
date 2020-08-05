@@ -5,16 +5,17 @@ import axios from "axios"
 class AddTodo extends React.Component{
 
     handleAddTodo=()=>{
+        // todo not id
         let mydate = new Date();
         let uuid =""+mydate.getDay()+ mydate.getHours()+ mydate.getMinutes()+mydate.getSeconds()+mydate.getMilliseconds()+parseInt(Math.random()*1000000);
+        //todo ""
         const inputString = document.getElementById("inputString").value;
-        console.log(inputString)
         this.props.addTodoRemoteToProps(uuid,inputString,false);
         axios.post("https://5f29559ba1b6bf0016ead479.mockapi.io/tudos", {
             text:inputString,
             mark:false,
-            id: uuid
         })
+        //todo return object
 
     }
 
