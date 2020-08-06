@@ -24,15 +24,12 @@ class AddTodo extends React.Component {
             message.error('Can not input empty content');
             return;
         }
-        // todo not id
-        let mydate = new Date();
-        let uuid = "" + mydate.getDay() + mydate.getHours() + mydate.getMinutes() + mydate.getSeconds() + mydate.getMilliseconds() + parseInt(Math.random() * 1000000);
-        this.props.addTodoRemoteToProps(uuid, this.state.value, false);
         axiosApi.post("", {
             text: this.state.value,
             mark: false,
+        }).then(response=>{
+            this.props.addTodoRemoteToProps(response.data);
         })
-        //todo return object
     }
 
     render() {
@@ -56,7 +53,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    addTodoRemoteToProps: (id, text, mark) => dispatch(addTodoRemote(id, text, mark))
+    addTodoRemoteToProps: (todoItem) => dispatch(addTodoRemote(todoItem))
 })
 
 

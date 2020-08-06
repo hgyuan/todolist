@@ -13,9 +13,8 @@ class TodoList extends React.Component {
     componentDidMount() {
         this.props.onResetToProps();
         axiosApi.get("").then(response => {
-            console.log(response)
             response.data.map((item) => {
-                this.props.onAddRemoteToProps(item.id, item.text, item.mark);
+                this.props.onAddRemoteToProps(item);
             })
         })
     }
@@ -34,14 +33,13 @@ class TodoList extends React.Component {
                                 bordered
                                 dataSource={this.props.todoList}
                                 renderItem={(item, index) =>
-                                    <List.Item>
-                                        <Todo text={item.text}
-                                              id={item.id}
-                                              key={index}
-                                              mark={item.mark}
-                                              onDelete={this.props.onDeleteToProps}
-                                              onReverse={this.props.onReverseToProps}/>
-                                    </List.Item>}
+                                    <Todo text={item.text}
+                                          id={item.id}
+                                          key={index}
+                                          mark={item.mark}
+                                          onDelete={this.props.onDeleteToProps}
+                                          onReverse={this.props.onReverseToProps}/>
+                                }
                             />
                         }
                     </Col>
@@ -56,7 +54,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    onAddRemoteToProps: (id, content, stat) => dispatch(addTodoRemote(id, content, stat)),
+    onAddRemoteToProps: (todoItem) => dispatch(addTodoRemote(todoItem)),
     onDeleteToProps: (id) => dispatch(deleteTodo(id)),
     // todo
     onReverseToProps: (id) => dispatch(reverseMark(id)),

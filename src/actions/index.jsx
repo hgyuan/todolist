@@ -1,10 +1,8 @@
 
-export const addTodoRemote = (id,text,mark) => {
+export const addTodoRemote = todoItem => {
     return {
         type: "ADD_TODO_REMOTE",
-        id,
-        text,
-        mark
+        todoItem
     }
 }
 

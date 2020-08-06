@@ -1,8 +1,9 @@
 import * as React from "react";
-import axios from "axios";
 import zhCN from 'antd/es/locale/zh_CN';
-import {ConfigProvider, message} from 'antd';
+import {Button, ConfigProvider, List} from 'antd';
 import {axiosApi} from "../AxiosApi";
+import { DownloadOutlined } from '@ant-design/icons';
+
 
 class Todo extends React.Component {
 
@@ -10,11 +11,12 @@ class Todo extends React.Component {
         if (this.props.finished) {
             return;
         }
-        axiosApi.put(this.props.id,{
+        axiosApi.put(this.props.id, {
             id: this.props.id,
             mark: !this.props.mark,
             test: this.props.text
         }).then(
+            //todo rename
             this.props.onReverse(this.props.id)
         )
     }
@@ -28,14 +30,13 @@ class Todo extends React.Component {
     render() {
         return (
             <ConfigProvider local={zhCN}>
-                <div>
+                <List.Item actions={[<Button onClick={this.handleDeleteTodo} danger type="primary" shape="circle"  >X</Button>]}>
                     <label onClick={this.handleCompeteTodo}
                            style={{
                                textDecoration: this.props.mark ? 'line-through' : 'none'
                            }}>
                         {this.props.text}</label>
-                    <button onClick={this.handleDeleteTodo}>X</button>
-                </div>
+                </List.Item>
             </ConfigProvider>
         )
     }

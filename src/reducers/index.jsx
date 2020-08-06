@@ -14,11 +14,7 @@ const todoReducers = (state = todoArray, action) => {
         case "ADD_TODO_REMOTE":
             return [
                 ...state,
-                {
-                    id: action.id,
-                    text: action.text,
-                    mark: action.mark,
-                }
+                action.todoItem
             ];
         case "RESET_TODOS":
             return [];

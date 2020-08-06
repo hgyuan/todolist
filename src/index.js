@@ -10,7 +10,7 @@ import loadingReducers from "./reducers/loading";
 const store = createStore(combineReducers({todoReducers,loadingReducers}));
 
 export default store
-
+//todo
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={store}>
